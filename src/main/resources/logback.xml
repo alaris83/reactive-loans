@@ -13,7 +13,7 @@
         </encoder>
     </appender>
 
-    <logger name="print-service-log" level="INFO">
+    <logger name="print-service-log" level="INFO" additivity="false">
         <appender-ref ref="PRINT" />
     </logger>
 
