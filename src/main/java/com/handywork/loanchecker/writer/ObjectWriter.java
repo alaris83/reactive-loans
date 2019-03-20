@@ -1,4 +1,4 @@
-package com.handywork.loanchecker.service;
+package com.handywork.loanchecker.writer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Simple print service that produce output to desired location.
  */
 @Component
-public class PrintService {
+public class ObjectWriter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger("print-service-log");
 

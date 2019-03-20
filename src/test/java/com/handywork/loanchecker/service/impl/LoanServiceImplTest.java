@@ -3,7 +3,7 @@ package com.handywork.loanchecker.service.impl;
 import com.handywork.loanchecker.client.dto.LoanDto;
 import com.handywork.loanchecker.TestData;
 import com.handywork.loanchecker.client.ZonkyApiClient;
-import com.handywork.loanchecker.service.PrintService;
+import com.handywork.loanchecker.writer.ObjectWriter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 public class LoanServiceImplTest {
 
     @Mock
-    private PrintService printService;
+    private ObjectWriter objectWriter;
 
     @Mock
     private ZonkyApiClient zonkyApiClient;
@@ -40,7 +40,7 @@ public class LoanServiceImplTest {
 
     @Before
     public void setUp() {
-        service = new LoanServiceImpl(printService, zonkyApiClient);
+        service = new LoanServiceImpl(objectWriter, zonkyApiClient);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class LoanServiceImplTest {
                 .expectNext(2L)
                 .verifyComplete();
 
-        verify(printService, times(2)).printToConsole(loanDtoArgumentCaptor.capture());
+        verify(objectWriter, times(2)).printToConsole(loanDtoArgumentCaptor.capture());
 
         final List<LoanDto> actualPrintValues = loanDtoArgumentCaptor.getAllValues();
         assertThat(actualPrintValues).containsExactlyInAnyOrder(TestData.LOAD_DTO_1, TestData.LOAD_DTO_2);
@@ -65,7 +65,7 @@ public class LoanServiceImplTest {
                 .expectNext(0L)
                 .verifyComplete();
 
-        verifyZeroInteractions(printService);
+        verifyZeroInteractions(objectWriter);
     }
 
     @Test
@@ -75,6 +75,6 @@ public class LoanServiceImplTest {
         StepVerifier.create(service.checkAndPrintNewLoans(LocalDateTime.now()))
                 .expectError(IllegalStateException.class);
 
-        verifyZeroInteractions(printService);
+        verifyZeroInteractions(objectWriter);
     }
 }
