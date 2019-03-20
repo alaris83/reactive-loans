@@ -42,7 +42,7 @@ public class ZonkyApiClient {
     }
 
     /**
-     * Get Marketplace loans after specific published data.
+     * Get Marketplace loans after specific published date.
      *
      * @param datePublished the published date
      * @return reactive stream of all loans published after {@code datePublished}

@@ -20,7 +20,6 @@ public class LoanServiceImpl implements LoanService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoanScheduler.class);
 
-    // Use separate logger to control where print will be route to
     private final ObjectWriter objectWriter;
 
     private final ZonkyApiClient client;

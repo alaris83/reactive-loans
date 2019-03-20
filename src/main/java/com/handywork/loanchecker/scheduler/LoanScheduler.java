@@ -40,14 +40,14 @@ public class LoanScheduler {
         // Make sure that scheduler will run always one at the time - fixedRate does not support that,
         // we could use fixedDelay instead but then we will not execute scheduler each 5 minutes
         this.semaphore = new Semaphore(1);
-        // initial setting for datePublish filter
+        // initial setting for datePublished filter
         this.lastRunDateTime = LocalDateTime.now().minusHours(24);
     }
 
     @Scheduled(fixedRateString = "${loans.scheduler.fixrate-ms}")
     public void execute() {
         if (this.schedulerEnabled) {
-            LOGGER.debug("Available permit : " + semaphore.availablePermits());
+            LOGGER.debug("Available permits: " + semaphore.availablePermits());
             try {
                 if (semaphore.tryAcquire(lockWaitTimeout, TimeUnit.SECONDS)) {
                     final LocalDateTime runDateTime = LocalDateTime.now();

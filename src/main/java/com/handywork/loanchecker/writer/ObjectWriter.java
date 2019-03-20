@@ -10,12 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ObjectWriter {
 
+    // Use separate logger to control where print will be route to
     private static final Logger LOGGER = LoggerFactory.getLogger("print-service-log");
 
     /**
-     * Print data objet into console.
+     * Print data object into console.
      *
-     * @param object the object to print
+     * @param object the object to be printed into console
      */
     public void printToConsole(Object object) {
         LOGGER.info(object.toString());

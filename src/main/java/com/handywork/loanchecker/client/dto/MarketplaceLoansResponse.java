@@ -8,11 +8,8 @@ import reactor.core.publisher.Flux;
 public class MarketplaceLoansResponse {
 
     private Flux<LoanDto> loans;
-
     private int pageSize;
-
     private int page;
-
     private int total;
 
     public Flux<LoanDto> getLoans() {
